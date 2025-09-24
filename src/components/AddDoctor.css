@@ -1,20 +1,25 @@
+/* === Import Modern Font === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* === Body === */
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, #e0f0ff, #d0e4ff);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* === Form Container === */
 .form-container {
-  width: 140%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 900px;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -29,51 +34,63 @@ body {
 .title-bar {
   background-color: #4a90e2;
   color: #fff;
-  padding: 18px 0;
-  font-size: 1.8rem;
+  padding: 20px;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
   letter-spacing: 0.5px;
 }
 
 /* === Form Heading === */
 .form-container h2 {
   text-align: center;
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   color: #222;
-  margin: 20px 0 30px 0;
+  margin: 25px 0 35px;
 }
 
 /* === Form Grid === */
 .doctor-form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  padding: 0 35px 40px 35px;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 35px 40px;
 }
 
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Labels === */
 .doctor-form label {
-  display: block;
   font-weight: 600;
   color: #333;
-  margin-bottom: 6px;
-  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 
-/* Inputs, Selects, Textarea */
+/* === Inputs, Selects, Textarea === */
 .doctor-form input,
 .doctor-form select,
 .doctor-form textarea {
-  width: 90%;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.95rem;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  border-radius: 10px;           /* smoother rounded corners */
+  border: 1.5px solid #ccc;      /* soft gray border */
   background-color: #fff;
   color: #222;
   transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.doctor-form input:hover,
+.doctor-form select:hover,
+.doctor-form textarea:hover {
+  border-color: #999;
 }
 
 .doctor-form input:focus,
@@ -84,32 +101,29 @@ body {
   outline: none;
 }
 
+/* === Textarea full width === */
 textarea {
-  min-height: 120px;
+  min-height: 140px;
+  grid-column: span 3;
   resize: vertical;
-  grid-column: span 2;
-}
-
-input[type="file"] {
-  padding: 6px;
 }
 
 /* === Buttons === */
 .form-buttons {
-  grid-column: span 2;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 25px;
+  grid-column: span 3;
 }
 
 button {
-  padding: 10px 25px;
+  padding: 14px 30px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
 }
 
@@ -134,20 +148,15 @@ button[type="button"]:hover {
 }
 
 /* === Responsive === */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .doctor-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
   .doctor-form {
     grid-template-columns: 1fr;
-    padding: 0 20px 20px 20px;
-  }
-
-  textarea {
-    grid-column: 1;
-  }
-
-  .form-buttons {
-    justify-content: center;
-    flex-direction: column;
-    gap: 15px;
   }
 
   button {
@@ -157,11 +166,25 @@ button[type="button"]:hover {
 
 @media (max-width: 480px) {
   .title-bar {
-    font-size: 1.5rem;
-    padding: 15px 0;
+    font-size: 1.7rem;
+    padding: 15px;
   }
 
   .form-container h2 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+
+  .doctor-form label {
+    font-size: 1rem;
+  }
+
+  .doctor-form input,
+  .doctor-form select,
+  .doctor-form textarea {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
   }
 }

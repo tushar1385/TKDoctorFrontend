@@ -4,7 +4,8 @@ import "./DoctorList.css";
 
 interface Doctor {
   _id: number;
-  name: string;
+  drName: string;
+  drCode: string;
   mobile: string;
   email: string;
   pan: string;
@@ -46,7 +47,7 @@ const DoctorList: React.FC = () => {
   return (
     <div className="page-container">
       <div className="card">
-        <h2>Doctors List</h2>
+        <h2> Doctors List</h2>
 
         {loading ? (
           <p style={{ textAlign: "center", marginTop: "50px" }}>Loading...</p>
@@ -54,7 +55,8 @@ const DoctorList: React.FC = () => {
           <table className="doctor-table">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Doctor Name</th>
+                <th>Doctor Code</th>
                 <th>Mobile</th>
                 <th>Email</th>
                 <th>PAN</th>
@@ -63,17 +65,18 @@ const DoctorList: React.FC = () => {
                 <th>Call Day</th>
                 <th>Call Time</th>
                 <th>Notes</th>
-                <th>chemistDetails</th>
-                <th>medReg</th>
-                <th>visitingRx</th>
-                <th>active/Inactive</th>
+                <th>Chemist Details</th>
+                <th>Medical Registration</th>
+                <th>VisitingRX</th>
+                <th>Active/Inactive</th>
               </tr>
             </thead>
             <tbody>
               {doctors.length > 0 ? (
                 doctors.map((doc) => (
                   <tr key={doc._id}>
-                    <td>{doc.name}</td>
+                    <td>{doc.drName}</td>
+                    <td>{doc.drCode}</td>
                     <td>{doc.mobile}</td>
                     <td>{doc.email}</td>
                     <td>{doc.pan}</td>

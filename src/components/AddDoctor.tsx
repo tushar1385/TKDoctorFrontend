@@ -48,12 +48,11 @@ const AddDoctor: React.FC = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-        // Print JSON to console
         console.log("Form Data:", JSON.stringify(formData));
 
         const response = await axios.post(
             "http://localhost:5000/api/doctors",
-            formData, // now just JSON
+            formData, 
             { headers: { "Content-Type": "application/json" } }
         );
 
@@ -84,105 +83,202 @@ const AddDoctor: React.FC = () => {
 };
 
 
-    return (
-        <div className="form-container">
-            <div className="title-bar">Doctor Management</div>
-            <h2>Add Doctor</h2>
-            <form onSubmit={handleSubmit} className="doctor-form">
-                <div className="form-row">
-                    <label>Dr. Name</label>
-                    <input type="text" name="drName" value={formData.drName} onChange={handleChange} />
+   return (
+  <div className="form-container">
+    <div className="title-bar">Doctor Management</div>
+    <h2>Add Doctor</h2>
 
-                    <label>Dr. Code</label>
-                    <input type="text" name="drCode" value={formData.drCode} onChange={handleChange} />
-                </div>
+    <form onSubmit={handleSubmit} className="doctor-form">
+      <div className="form-item">
+        <label>Doctor Name</label>
+        <input
+          type="text"
+          name="drName"
+          value={formData.drName}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                <div className="form-row">
-                    <label>Mobile</label>
-                    <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} />
+      <div className="form-item">
+        <label>Doctor Code</label>
+        <input
+          type="text"
+          name="drCode"
+          value={formData.drCode}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                    <label>Email</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} />
-                </div>
+      <div className="form-item">
+        <label>Mobile</label>
+        <input
+          type="text"
+          name="mobile"
+          value={formData.mobile}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                <div className="form-row">
-                    <label>PAN</label>
-                    <input type="text" name="pan" value={formData.pan} onChange={handleChange} />
+      <div className="form-item">
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                    <label>Address</label>
-                    <input type="text" name="address" value={formData.address} onChange={handleChange} />
-                </div>
+      <div className="form-item">
+        <label>PAN</label>
+        <input
+          type="text"
+          name="pan"
+          value={formData.pan}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                <div className="form-row">
-                    <label>DOB</label>
-                    <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
+      <div className="form-item">
+        <label>DOB</label>
+        <input
+          type="date"
+          name="dob"
+          value={formData.dob}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                    <label>Call Day</label>
-                    <select name="callDay" value={formData.callDay} onChange={handleChange}>
-                        <option value="">(none)</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                    </select>
-                </div>
+      <div className="form-item" style={{ gridColumn: "span 3" }}>
+        <label>Address</label>
+        <textarea
+          name="address"
+          value={formData.address}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
 
-                <div className="form-row">                    
-                    <label>Call Time</label>
-                    <input type="time" name="callTime" value={formData.callTime} onChange={handleChange} />
+      <div className="form-item">
+        <label>Call Day</label>
+        <select
+          name="callDay"
+          value={formData.callDay}
+          onChange={handleChange}
+        >
+          <option value="">(none)</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+      </div>
 
-                    <label>Notes</label>
-                    <textarea name="notes" value={formData.notes} onChange={handleChange}></textarea>
-                </div>
+      <div className="form-item">
+        <label>Call Time</label>
+        <input
+          type="time"
+          name="callTime"
+          value={formData.callTime}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                <div className="form-row">
-                    <label>Chemist Details</label>
-                    <input type="text" name="chemistDetails" value={formData.chemistDetails} onChange={handleChange} />
+      <div className="form-item">
+        <label>Chemist Details</label>
+        <input
+          type="text"
+          name="chemistDetails"
+          value={formData.chemistDetails}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                    <label>Medical Registration</label>
-                    <input type="text" name="medReg" value={formData.medReg} onChange={handleChange} />
+      <div className="form-item">
+        <label>Medical Registration</label>
+        <input
+          type="text"
+          name="medReg"
+          value={formData.medReg}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                     <label>Visiting/RX</label>
-                    <input type="text" name="visitingRx" value={formData.visitingRx} onChange={handleChange} />
-                </div>
+      <div className="form-item">
+        <label>Visiting / RX</label>
+        <input
+          type="text"
+          name="visitingRx"
+          value={formData.visitingRx}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                <div className="form-row">
-                    <label>Active Inactive</label>
-                    <input type="text" name="activeInactive" value={formData.activeInactive} onChange={handleChange} />
-                </div>
+      <div className="form-item">
+        <label>Active / Inactive</label>
+        <input
+          type="text"
+          name="activeInactive"
+          value={formData.activeInactive}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-                <div className="form-buttons">
-                    <button type="submit">Save</button>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setFormData({
-                                drName: "",
-                                drCode: "",
-                                mobile: "",
-                                email: "",
-                                pan: "",
-                                address: "",
-                                dob: "",
-                                callDay: "",
-                                callTime: "",
-                                notes: "",
-                                chemistDetails:"",
-                                medReg: "",
-                                visitingRx: "",
-                                activeInactive: ""
-                            })
-                        }
-                    >
-                        Cancel
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+        {/* === Row 4: Notes full width === */}
+      <div className="form-item" style={{ gridColumn: "span 3" }}>
+        <label>Notes</label>
+        <textarea
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+
+      {/* === Buttons full width === */}
+      <div className="form-buttons" style={{ gridColumn: "span 3" }}>
+        <button type="submit">Save</button>
+        <button
+          type="button"
+          onClick={() =>
+            setFormData({
+              drName: "",
+              drCode: "",
+              mobile: "",
+              email: "",
+              pan: "",
+              address: "",
+              dob: "",
+              callDay: "",
+              callTime: "",
+              notes: "",
+              chemistDetails: "",
+              medReg: "",
+              visitingRx: "",
+              activeInactive: "",
+            })
+          }
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+);
+
 };
 
 export default AddDoctor;

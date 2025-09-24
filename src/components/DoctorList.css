@@ -1,92 +1,89 @@
 /* === Page container === */
 .page-container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
-  padding: 20px;
-  background-color: #f5f8ff; /* light page background */
+  min-height: 100vh;
+  padding: 30px;
+  background: linear-gradient(135deg, #eef3ff 0%, #f9fbff 100%);
+  overflow-y: auto;
+  box-sizing: border-box;
+  gap: 20px; /* spacing between multiple cards */
 }
 
 /* === Card wrapper === */
 .card {
   width: 100%;
-  max-width: 1000px;
-  background: #ffffff; /* white card background */
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  margin-bottom: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   overflow-x: auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 .card h2 {
-    color:black;
+  color: #1a1a1a;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-left: 4px solid #4a6cff;
+  padding-left: 12px;
 }
 
 /* === Table styling === */
 .doctor-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px; /* spacing between rows */
-  table-layout: fixed;
-  background-color: #ffffff; /* table background white */
-  color: #000000; /* all text black */
-  font-weight: 500;
-}
-
-.doctor-table th,
-.doctor-table td {
-  padding: 12px 15px;
-  text-align: left;
+  border-spacing: 0 10px;
+  table-layout: auto;
+  background-color: transparent;
   font-size: 0.95rem;
-  word-wrap: break-word;
-  color: #000000; /* ensure values black */
+  color: #333;
 }
 
+/* Sticky header */
 .doctor-table th {
-  background-color: #d9e4ff; /* light blue header */
-  color: #000000; /* header text black */
+  position: sticky;
+  top: 0;
+  background-color: #4a6cff;
+  color: #fff;
   font-weight: 600;
+  padding: 14px 16px;
   border-radius: 8px 8px 0 0;
+  text-align: left;
+  z-index: 2;
 }
 
-.doctor-table tr {
-  background-color: #ffffff; /* row background white */
+.doctor-table td {
+  padding: 12px 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  word-wrap: break-word;
 }
 
-.doctor-table tr:hover {
-  background-color: #f0f4ff; /* subtle hover */
+.doctor-table tr:hover td {
+  background-color: #f3f6ff;
 }
 
-/* Add subtle spacing between columns */
-.doctor-table th:not(:last-child),
-.doctor-table td:not(:last-child) {
-  padding-right: 25px;
-}
-
-/* Responsive adjustments */
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .card {
-    padding: 15px;
+    padding: 20px;
   }
 
   .doctor-table th,
   .doctor-table td {
-    padding: 10px 8px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    padding: 10px;
-  }
-
-  .doctor-table th,
-  .doctor-table td {
-    padding: 8px 6px;
     font-size: 0.85rem;
+    padding: 10px 12px;
   }
 }
