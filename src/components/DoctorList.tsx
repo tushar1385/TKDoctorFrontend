@@ -3,7 +3,7 @@ import axios from "axios";
 import "./DoctorList.css";
 
 interface Doctor {
-  id: number;
+  _id: number;
   name: string;
   mobile: string;
   email: string;
@@ -13,6 +13,10 @@ interface Doctor {
   callDay: string;
   callTime: string;
   notes: string;
+  chemistDetails: string;
+  medReg: string;
+  visitingRx: string;
+  activeInactive: string;
 }
 
 const DoctorList: React.FC = () => {
@@ -24,23 +28,13 @@ const DoctorList: React.FC = () => {
     const fetchDoctors = async () => {
       try {
         const response = await axios.get(
-          "http://your-backend-server.com/api/doctors"
+          "http://localhost:5000/api/doctors"
         );
         setDoctors(response.data || []);
       } catch (err) {
         console.error(err);
         setError(true);
-        setDoctors([{id:12345,
-            name: "Tushar",
-            mobile: "1234",
-            email: 'tusharwfl',
-            pan: "bjfhbe",
-            address: "Hell",
-            dob: "14-01-2001",
-            callDay: "Sunday",
-            callTime: "06:77",
-            notes: "Hello"
-        }]);
+        setDoctors([]);
       } finally {
         setLoading(false);
       }
@@ -69,12 +63,16 @@ const DoctorList: React.FC = () => {
                 <th>Call Day</th>
                 <th>Call Time</th>
                 <th>Notes</th>
+                <th>chemistDetails</th>
+                <th>medReg</th>
+                <th>visitingRx</th>
+                <th>active/Inactive</th>
               </tr>
             </thead>
             <tbody>
               {doctors.length > 0 ? (
                 doctors.map((doc) => (
-                  <tr key={doc.id}>
+                  <tr key={doc._id}>
                     <td>{doc.name}</td>
                     <td>{doc.mobile}</td>
                     <td>{doc.email}</td>
@@ -84,12 +82,16 @@ const DoctorList: React.FC = () => {
                     <td>{doc.callDay}</td>
                     <td>{doc.callTime}</td>
                     <td>{doc.notes}</td>
+                    <td>{doc.chemistDetails}</td>
+                    <td>{doc.medReg}</td>
+                    <td>{doc.visitingRx}</td>
+                    <td>{doc.activeInactive}</td>
                   </tr>
                 ))
               ) : (
                 Array.from({ length: 5 }).map((_, index) => (
                   <tr key={index}>
-                    {Array.from({ length: 9 }).map((__, colIndex) => (
+                    {Array.from({ length: 13 }).map((__, colIndex) => (
                       <td key={colIndex}></td>
                     ))}
                   </tr>

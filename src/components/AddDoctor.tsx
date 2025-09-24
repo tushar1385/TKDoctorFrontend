@@ -4,7 +4,8 @@ import "./AddDoctor.css";
 import axios from "axios";
 
 interface FormData {
-    name: string;
+    drName: string;
+    drCode: string;
     mobile: string;
     email: string;
     pan: string;
@@ -13,11 +14,16 @@ interface FormData {
     callDay: string;
     callTime: string;
     notes: string;
+    chemistDetails: string;
+    medReg: string;
+    visitingRx: string;
+    activeInactive: string;
 }
 
 const AddDoctor: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
-        name: "",
+        drName: "",
+        drCode: "",
         mobile: "",
         email: "",
         pan: "",
@@ -26,6 +32,10 @@ const AddDoctor: React.FC = () => {
         callDay: "",
         callTime: "",
         notes: "",
+        chemistDetails:"",
+        medReg: "",
+        visitingRx: "",
+        activeInactive: ""
     });
 
     const handleChange = (
@@ -39,10 +49,10 @@ const AddDoctor: React.FC = () => {
     e.preventDefault();
     try {
         // Print JSON to console
-        console.log("Form Data:", JSON.stringify(formData, null, 2));
+        console.log("Form Data:", JSON.stringify(formData));
 
         const response = await axios.post(
-            "http://your-backend-server.com/api/doctors",
+            "http://localhost:5000/api/doctors",
             formData, // now just JSON
             { headers: { "Content-Type": "application/json" } }
         );
@@ -52,7 +62,8 @@ const AddDoctor: React.FC = () => {
 
         // Reset form
         setFormData({
-            name: "",
+            drName: "",
+            drCode: "",
             mobile: "",
             email: "",
             pan: "",
@@ -61,6 +72,10 @@ const AddDoctor: React.FC = () => {
             callDay: "",
             callTime: "",
             notes: "",
+            chemistDetails:"",
+            medReg: "",
+            visitingRx: "",
+            activeInactive: ""
         });
     } catch (error) {
         console.error("Error saving doctor:", error);
@@ -75,30 +90,33 @@ const AddDoctor: React.FC = () => {
             <h2>Add Doctor</h2>
             <form onSubmit={handleSubmit} className="doctor-form">
                 <div className="form-row">
-                    <label>Name</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} />
+                    <label>Dr. Name</label>
+                    <input type="text" name="drName" value={formData.drName} onChange={handleChange} />
 
+                    <label>Dr. Code</label>
+                    <input type="text" name="drCode" value={formData.drCode} onChange={handleChange} />
+                </div>
+
+                <div className="form-row">
                     <label>Mobile</label>
                     <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} />
-                </div>
 
-                <div className="form-row">
                     <label>Email</label>
                     <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                </div>
 
+                <div className="form-row">
                     <label>PAN</label>
                     <input type="text" name="pan" value={formData.pan} onChange={handleChange} />
-                </div>
 
-                <div className="form-row">
                     <label>Address</label>
                     <input type="text" name="address" value={formData.address} onChange={handleChange} />
-
-                    <label>DOB</label>
-                    <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
                 </div>
 
                 <div className="form-row">
+                    <label>DOB</label>
+                    <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
+
                     <label>Call Day</label>
                     <select name="callDay" value={formData.callDay} onChange={handleChange}>
                         <option value="">(none)</option>
@@ -110,14 +128,30 @@ const AddDoctor: React.FC = () => {
                         <option value="Saturday">Saturday</option>
                         <option value="Sunday">Sunday</option>
                     </select>
+                </div>
 
+                <div className="form-row">                    
                     <label>Call Time</label>
                     <input type="time" name="callTime" value={formData.callTime} onChange={handleChange} />
+
+                    <label>Notes</label>
+                    <textarea name="notes" value={formData.notes} onChange={handleChange}></textarea>
                 </div>
 
                 <div className="form-row">
-                    <label>Notes</label>
-                    <textarea name="notes" value={formData.notes} onChange={handleChange}></textarea>
+                    <label>Chemist Details</label>
+                    <input type="text" name="chemistDetails" value={formData.chemistDetails} onChange={handleChange} />
+
+                    <label>Medical Registration</label>
+                    <input type="text" name="medReg" value={formData.medReg} onChange={handleChange} />
+
+                     <label>Visiting/RX</label>
+                    <input type="text" name="visitingRx" value={formData.visitingRx} onChange={handleChange} />
+                </div>
+
+                <div className="form-row">
+                    <label>Active Inactive</label>
+                    <input type="text" name="activeInactive" value={formData.activeInactive} onChange={handleChange} />
                 </div>
 
                 <div className="form-buttons">
@@ -126,7 +160,8 @@ const AddDoctor: React.FC = () => {
                         type="button"
                         onClick={() =>
                             setFormData({
-                                name: "",
+                                drName: "",
+                                drCode: "",
                                 mobile: "",
                                 email: "",
                                 pan: "",
@@ -135,6 +170,10 @@ const AddDoctor: React.FC = () => {
                                 callDay: "",
                                 callTime: "",
                                 notes: "",
+                                chemistDetails:"",
+                                medReg: "",
+                                visitingRx: "",
+                                activeInactive: ""
                             })
                         }
                     >
